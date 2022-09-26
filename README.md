@@ -5,3 +5,5 @@ Copyright (c) 2022 Lucian Constantin, lucian.constantin@bristol.ac.uk
 run example/example_run.m to generate a test signal with 4 set amplitudes,
 frequencies, damping ratios, phase angles and added Gaussian noise and 
 identify its components using nlsID.
+
+![image](https://user-images.githubusercontent.com/20601389/192199971-de8f9347-3296-4ece-bd3b-f7f59ea706d1.png)
