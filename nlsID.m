@@ -1,7 +1,7 @@
 function [tt, yy, resnorm, residual, elim_times, elim_freq] = ...
     nlsID(t,x,tend)
 
-% nlsID is a nonlinear time-domain system identification code. For the full
+% nlsID is a time-domain nonlinear system identification code. For the full
 % description, see Constantin et al (2022) doi.org/10.3390/app12157860
 % Copyright (c) 2022 Lucian Constantin, lucian.constantin@bristol.ac.uk
 
