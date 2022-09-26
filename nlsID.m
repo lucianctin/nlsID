@@ -41,7 +41,8 @@ end
 % p(4) - phi
 p01 = [];
 
-dimprob = 4;
+dimprob = length(f);
+noparam = 4;
 
 for i = 1:dimprob
     p01 = [p01 x(1) 0 f(i)*2*pi 0];
@@ -53,7 +54,7 @@ minamp = -NLSprops.ampdev; maxamp = NLSprops.ampdev;
 
 % set lower and upper optimization bounds
 LB1 = []; UB1 = [];
-for i = 1:length(f)
+for i = 1:dimprob
     LB1 = [LB1 minamp*abs(x(1)) -inf f(i)*2*pi*minlim -inf];
     UB1 = [UB1 maxamp*abs(x(1))  inf f(i)*2*pi*maxlim  inf];
 end
@@ -91,10 +92,10 @@ while stopflag1
 
     % verify signal component existence criteria 
     modflag = 0; % flag that signal was modified, means that fit must be done again
-    for i = 0:(length(f)-1)
-        if p1(i*dimprob+2) > NLSprops.dampthresh
-            LB1(i*dimprob+1:i*dimprob+dimprob) = zeros(1,dimprob);
-            UB1(i*dimprob+1:i*dimprob+dimprob) = zeros(1,dimprob);
+    for i = 0:(dimprob-1)
+        if p1(i*noparam+2) > NLSprops.dampthresh
+            LB1(i*noparam+1:i*noparam+noparam) = zeros(1,noparam);
+            UB1(i*noparam+1:i*noparam+noparam) = zeros(1,noparam);
             modflag = 1;
             fprintf('Component %.0f (f = %.1f Hz) eliminated at t = %.2fs\n',i+1,f(i+1),t(cr1(1)));
             elim_times = [elim_times t(cr1(1))]; elim_freq = [elim_freq f(i+1)];
@@ -107,8 +108,8 @@ while stopflag1
     end
     
     % store results
-    for i = 0:(length(f)-1)
-        yy{i+1}(k1,:) = p1(i*dimprob+1:i*dimprob+dimprob);
+    for i = 0:(dimprob-1)
+        yy{i+1}(k1,:) = p1(i*noparam+1:i*noparam+noparam);
     end
 
     resnorm{1}(k1) = resnormm;
