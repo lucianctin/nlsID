@@ -41,7 +41,7 @@ end
 % p(4) - phi
 p01 = [];
 
-dimprob = length(f);
+dimprob = 4;
 
 for i = 1:dimprob
     p01 = [p01 x(1) 0 f(i)*2*pi 0];
